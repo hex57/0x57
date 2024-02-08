@@ -1,0 +1,11 @@
+{
+	"references": [
+		{
+			"path": "./tsconfig.web.json"
+		},
+		{
+			"path": "./tsconfig.node.json"
+		}
+	],
+	"exclude": ["dist/**/*", "node_modules/**/*"]
+}

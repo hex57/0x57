@@ -1,0 +1,28 @@
+{
+	"name": "bitflag-js",
+	"version": "1.0.0",
+	"description": "A bitflag library for JavaScript",
+	"homepage": "https://github.com/ianmitchell/interaction-kit/tree/main/packages/bitfield-js",
+	"license": "MIT",
+	"author": "Ian Mitchell",
+	"type": "module",
+	"exports": "./dist/src/bitfield.js",
+	"main": "./dist/src/bitfield.js",
+	"typings": "dist/src/bitfield.d.ts",
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"build": "tsc",
+		"clean": "rimraf dist .turbo",
+		"lint": "eslint ./src/**/*.ts",
+		"prettier": "prettier src/**/*.ts --check",
+		"prepublish": "npm run clean && npm run build",
+		"typecheck": "tsc --noEmit"
+	},
+	"prettier": "@0x57/prettier-config",
+	"engines": {
+		"node": ">=18"
+	}
+}
