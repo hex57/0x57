@@ -1,8 +1,0 @@
-{
-	"extends": "@0x57/typescript-config/base.json",
-	"compilerOptions": {
-		"composite": true,
-		"incremental": true
-	},
-	"include": ["src/server.ts", "src/server/**/*.ts", "src/shared/**/*.ts"]
-}

@@ -1,8 +1,0 @@
-{
-	"extends": "@0x57/typescript-config/react-library.json",
-	"compilerOptions": {
-		"composite": true,
-		"incremental": true
-	},
-	"include": ["src/client.ts", "src/client/**/*.ts", "src/shared/**/*.ts"]
-}
