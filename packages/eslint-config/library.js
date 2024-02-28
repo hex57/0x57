@@ -4,14 +4,16 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-	extends: ["eslint:recommended", "prettier", "eslint-config-turbo"],
-	plugins: ["only-warn"],
+	parser: "@typescript-eslint/parser",
+	plugins: ["@typescript-eslint", "eslint-plugin-tsdoc"],
+	extends: ["xo", "xo-typescript", "eslint-config-turbo", "prettier"],
 	globals: {
 		React: true,
 		JSX: true,
 	},
 	env: {
 		node: true,
+		es2020: true,
 	},
 	settings: {
 		"import/resolver": {
@@ -31,4 +33,18 @@ module.exports = {
 			files: ["*.js?(x)", "*.ts?(x)"],
 		},
 	],
+	rules: {
+		"accessor-pairs": 0,
+		"capitalized-comments": 0,
+		"no-bitwise": 0,
+		"no-eq-null": 0,
+		"object-shorthand": ["error", "properties"],
+		"eqeqeq": ["error", "smart"],
+		"no-await-in-loop": 0,
+		"max-params": 0,
+		"complexity": 0,
+		"tsdoc/syntax": "error",
+		"@typescript-eslint/consistent-type-definitions": 0,
+		"@typescript-eslint/naming-convention": 0,
+	},
 };
