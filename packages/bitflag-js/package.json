@@ -16,7 +16,7 @@
 	"scripts": {
 		"build": "tsc",
 		"clean": "rimraf dist .turbo",
-		"lint": "eslint ./src/**/*.ts",
+		"lint": "eslint",
 		"prettier": "prettier src/**/*.ts --check",
 		"prepublish": "npm run clean && npm run build",
 		"typecheck": "tsc --noEmit"

@@ -7,7 +7,7 @@
 		"lint": "turbo lint",
 		"test": "vitest",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
-		"gen:package": "turbo gen create-package"
+		"generate:package": "turbo gen create-package"
 	},
 	"devDependencies": {
 		"@0x57/auth": "*",
