@@ -1,6 +1,6 @@
-import hex57 from "@/lib/0x57";
-import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import hex57 from "../../lib/0x57";
+import { getSession } from "../../lib/session";
 
 export default async function ProfilePage() {
 	const session = await getSession();

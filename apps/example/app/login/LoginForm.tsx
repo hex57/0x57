@@ -1,9 +1,9 @@
 "use client";
 
-import { useWebAuthnAvailability, useLogin } from "@0x57/react";
-import createChallenge from "@/actions/challenge";
+import { useLogin, useWebAuthnAvailability } from "@0x57/react";
 import { redirect } from "next/navigation";
-import loginAction from "@/actions/login";
+import createChallenge from "../../actions/challenge";
+import loginAction from "../../actions/login";
 
 export default function LoginForm() {
 	const isAvailable = useWebAuthnAvailability();

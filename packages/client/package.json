@@ -1,9 +1,9 @@
 {
-	"name": "@0x57/passkey",
+	"name": "@0x57/client",
 	"version": "0.0.0",
 	"type": "module",
 	"exports": {
-		".": "./dist/index.js"
+		".": "./dist/client.js"
 	},
 	"scripts": {
 		"build": "tsc",
@@ -13,8 +13,5 @@
 		"lint": "eslint . --max-warnings 0",
 		"prepublish": "npm run clean && npm run build"
 	},
-	"dependencies": {
-		"@0x57/client": "*",
-		"@github/webauthn-json": "^2.1.1"
-	}
+	"dependencies": {}
 }

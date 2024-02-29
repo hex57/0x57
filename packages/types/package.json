@@ -1,0 +1,18 @@
+{
+  "name": "@0x57/types",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+		"clean": "rimraf dist .turbo",
+    "prettier": "prettier src/**/*.ts --check",
+		"typecheck": "tsc --noEmit",
+		"lint": "eslint . --max-warnings 0",
+		"prepublish": "npm run clean && npm run build"
+  },
+  "dependencies": {
+  }
+}

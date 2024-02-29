@@ -20,8 +20,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			},
 			{
 				type: "add",
-				path: "packages/{{name}}/.eslintrc.js",
-				templateFile: "templates/.eslintrc.js.hbs",
+				path: "packages/{{name}}/.eslintrc.cjs",
+				templateFile: "templates/.eslintrc.cjs.hbs",
 			},
 			{
 				type: "add",

@@ -1,5 +1,4 @@
-import { getSession } from "@/lib/session";
-import Image from "next/image";
+import { getSession } from "../lib/session";
 
 export default async function Home() {
 	const session = await getSession();

@@ -1,9 +1,9 @@
 "use server";
 
-import { getSession } from "@/lib/session";
-import { redirect } from "next/navigation";
-import hex57 from "@/lib/0x57";
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { redirect } from "next/navigation";
+import hex57 from "../lib/0x57";
+import { getSession } from "../lib/session";
 
 export default async function register(formData: FormData) {
 	const session = await getSession();

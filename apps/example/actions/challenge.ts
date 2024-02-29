@@ -1,7 +1,7 @@
 "use server";
 
-import { getSession } from "@/lib/session";
-import { generateChallenge } from "@0x57/auth";
+import { generateChallenge } from "@0x57/passkey";
+import { getSession } from "../lib/session";
 
 export default async function createChallenge() {
 	const challenge = generateChallenge();

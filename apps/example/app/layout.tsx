@@ -1,10 +1,10 @@
+import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import clsx from "clsx";
 import Link from "next/link";
-import { getSession } from "@/lib/session";
 import { Fragment } from "react";
+import { getSession } from "../lib/session";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

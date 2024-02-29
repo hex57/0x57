@@ -46,5 +46,6 @@ module.exports = {
 		"tsdoc/syntax": "error",
 		"@typescript-eslint/consistent-type-definitions": 0,
 		"@typescript-eslint/naming-convention": 0,
+		"@typescript-eslint/parameter-properties": 0,
 	},
 };

@@ -2,18 +2,18 @@
 	"name": "0x57",
 	"private": true,
 	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
+		"build": "turbo build --filter='./packages/*'",
+		"dev": "turbo dev --filter='./apps/example'",
 		"lint": "turbo lint",
 		"test": "vitest",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"generate:package": "turbo gen create-package"
 	},
 	"devDependencies": {
-		"@0x57/auth": "*",
 		"@0x57/eslint-config": "*",
 		"@0x57/prettier-config": "*",
 		"@0x57/typescript-config": "*",
+		"@0x57/types": "*",
 		"@turbo/gen": "^1.12.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-packagejson": "^2.4.10",
