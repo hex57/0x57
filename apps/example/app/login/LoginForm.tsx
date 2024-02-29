@@ -1,6 +1,6 @@
 "use client";
 
-import { useLogin, useWebAuthnAvailability } from "@0x57/react";
+import { useLogin, useWebAuthnAvailability } from "@0x57/passkey-react";
 import { redirect } from "next/navigation";
 import createChallenge from "../../actions/challenge";
 import loginAction from "../../actions/login";
@@ -13,7 +13,7 @@ export default function LoginForm() {
 		rpId: "localhost",
 		// TODO: Look at these three and figure out something cleaner?
 		action: loginAction,
-		onSuccess: (user) => {
+		onSuccess: () => {
 			redirect("/profile");
 		},
 		onError: (result) => {

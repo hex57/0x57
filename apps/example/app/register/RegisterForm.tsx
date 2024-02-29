@@ -1,6 +1,6 @@
 "use client";
 
-import { useRegister, useWebauthnAvailability } from "@0x57/react";
+import { useRegister, useWebauthnAvailability } from "@0x57/passkey-react";
 import { redirect } from "next/navigation";
 import createChallenge from "../../actions/challenge";
 import registerAction from "../../actions/register";

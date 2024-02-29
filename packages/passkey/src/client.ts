@@ -1,7 +1,7 @@
 /* eslint-env node */
 import { Hex57, RequestMethod } from "@0x57/client";
-import type { Account, Session } from "@0x57/types";
-import { type Prettify } from "./interfaces.js";
+import type { Prettify } from "@0x57/interfaces";
+import type { Account, CreateAccountResponse } from "@0x57/types";
 
 interface ClientOptions {
 	rpid: string;
@@ -25,37 +25,57 @@ export class PasskeyClient extends Hex57 {
 		this.defaultOrigin = defaultOptions?.origin;
 	}
 
-	login(challenge: string, credential: Credential) {
-		return this.request(RequestMethod.POST, `/sessions`, {
-			challenge,
-			credential,
+	async register(parameters: {
+		challenge: string;
+		credential: string;
+		username?: string;
+		email?: string;
+	}): Promise<CreateAccountResponse> {
+		const response = await this.request(RequestMethod.POST, `/sessions`, {
+			challenge: parameters.challenge,
+			credential: parameters.credential,
+			username: parameters.username,
+			email: parameters.email,
 		});
+
+		const json = (await response.json()) as unknown;
+		return json as CreateAccountResponse;
 	}
 
-	register(
-		challenge: string,
-		credential: Credential,
-		accountData?: Prettify<AccountData>
-	): Promise<Session> {
-		return this.request(RequestMethod.POST, `/sessions`, {
-			challenge,
-			credential,
-			username: accountData?.username,
-			email: accountData?.email,
+	async login(parameters: {
+		challenge: string;
+		credential: string;
+	}): Promise<Account> {
+		const response = await this.request(RequestMethod.POST, `/sessions`, {
+			challenge: parameters.challenge,
+			credential: parameters.credential,
 		});
+
+		const json = (await response.json()) as unknown;
+		return json.account as Account;
 	}
 
 	async getAccount(id: string): Promise<Account> {
-		return this.request(RequestMethod.GET, `/accounts/${id}`);
+		const response = await this.request(RequestMethod.GET, `/accounts/${id}`);
+
+		const json = (await response.json()) as unknown;
+		return json.account as Account;
 	}
 
 	async editAccount(
 		id: string,
 		{ email, username }: { email?: string; username?: string }
 	): Promise<Account> {
-		return this.request(RequestMethod.PATCH, `/accounts/${id}`, {
-			email,
-			username,
-		});
+		const response = await this.request(
+			RequestMethod.PATCH,
+			`/accounts/${id}`,
+			{
+				email,
+				username,
+			}
+		);
+
+		const json = (await response.json()) as unknown;
+		return json.account as Account;
 	}
 }

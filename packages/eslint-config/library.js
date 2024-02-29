@@ -47,5 +47,7 @@ module.exports = {
 		"@typescript-eslint/consistent-type-definitions": 0,
 		"@typescript-eslint/naming-convention": 0,
 		"@typescript-eslint/parameter-properties": 0,
+		"@typescript-eslint/prefer-reduce-type-parameter": "error",
+		"@typescript-eslint/no-import-type-side-effects": "error",
 	},
 };

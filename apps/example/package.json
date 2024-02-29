@@ -30,6 +30,7 @@
 		"tailwindcss": "^3.3.0",
 		"typescript": "^5",
 		"@0x57/passkey": "*",
+		"@0x57/passkey-react": "*",
 		"@0x57/eslint-config": "*",
 		"@0x57/typescript-config": "*"
 	}

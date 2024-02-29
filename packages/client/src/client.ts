@@ -21,7 +21,7 @@ export class Hex57 {
 		this.#key = key;
 	}
 
-	async request(
+	async request<T>(
 		method: RequestMethod,
 		url: string,
 		body?: Record<string, unknown>

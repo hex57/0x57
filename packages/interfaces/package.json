@@ -1,0 +1,17 @@
+{
+	"name": "@0x57/interfaces",
+	"version": "0.0.0",
+	"type": "module",
+	"exports": {
+		".": "./dist/interfaces.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"clean": "rimraf dist .turbo",
+		"prettier": "prettier src/**/*.ts --check",
+		"typecheck": "tsc --noEmit",
+		"lint": "eslint . --max-warnings 0",
+		"prepublish": "npm run clean && npm run build"
+	},
+	"dependencies": {}
+}
