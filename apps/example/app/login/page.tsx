@@ -1,3 +1,4 @@
+import createChallenge from "../../actions/challenge";
 import LoginForm from "./LoginForm";
 
 export default function LoginPage() {
@@ -10,7 +11,7 @@ export default function LoginPage() {
 			</div>
 
 			<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-				<LoginForm />
+				<LoginForm createChallenge={createChallenge} />
 
 				<p className="mt-10 text-center text-sm text-gray-500">
 					<a

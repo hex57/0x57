@@ -1,17 +1,24 @@
 "use client";
 
-import { useLogin, useWebAuthnAvailability } from "@0x57/passkey-react";
+import {
+	useChallengeAction,
+	useLogin,
+	useWebAuthnAvailability,
+} from "@0x57/passkey-react";
 import { redirect } from "next/navigation";
-import createChallenge from "../../actions/challenge";
 import loginAction from "../../actions/login";
 
-export default function LoginForm() {
+export default function LoginForm({
+	createChallenge,
+}: {
+	createChallenge: () => Promise<string>;
+}) {
 	const isAvailable = useWebAuthnAvailability();
+	const challenge = useChallengeAction(createChallenge);
 
-	const { onSubmit, isPending } = useLogin({
-		challenge: createChallenge,
-		rpId: "localhost",
-		// TODO: Look at these three and figure out something cleaner?
+	const onSubmit = useLogin({
+		challenge: challenge ?? "",
+		relyingPartyId: "localhost",
 		action: loginAction,
 		onSuccess: () => {
 			redirect("/profile");
@@ -26,7 +33,7 @@ export default function LoginForm() {
 			<div>
 				<button
 					type="submit"
-					disabled={!isAvailable || isPending}
+					disabled={!isAvailable}
 					className="inline-flex w-full items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 				>
 					<svg

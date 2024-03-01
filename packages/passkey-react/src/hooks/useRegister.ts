@@ -23,7 +23,7 @@ export function useRegister<ActionResult>({
 	onSuccess,
 	onError,
 }: Prettify<RegisterProps<ActionResult>>) {
-	const onSubmit = async (user: { name: string; displayName: string }) => {
+	const register = async (user: { name: string; displayName: string }) => {
 		try {
 			const credential = await createCredential(
 				{
@@ -48,5 +48,5 @@ export function useRegister<ActionResult>({
 		}
 	};
 
-	return onSubmit;
+	return register;
 }

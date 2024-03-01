@@ -1,19 +1,32 @@
 "use client";
 
-import { useRegister, useWebauthnAvailability } from "@0x57/passkey-react";
+import {
+	useChallengeAction,
+	useRegister,
+	useWebAuthnAvailability,
+} from "@0x57/passkey-react";
 import { redirect } from "next/navigation";
-import createChallenge from "../../actions/challenge";
+import { FormEvent, useState } from "react";
 import registerAction from "../../actions/register";
 
-export default function RegisterForm() {
-	const isAvailable = useWebauthnAvailability();
+export default function RegisterForm({
+	createChallenge,
+}: {
+	createChallenge: () => Promise<string>;
+}) {
+	const isAvailable = useWebAuthnAvailability();
+	const challenge = useChallengeAction(createChallenge);
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
 
-	const { onSubmit, isPending } = useRegister({
-		challenge: createChallenge,
-		rpId: "localhost",
-		// TODO: Look at these three and figure out something cleaner?
+	const register = useRegister({
+		challenge: challenge ?? "",
+		relyingParty: {
+			id: "localhost",
+			name: "localhost",
+		},
 		action: registerAction,
-		onSuccess: (user) => {
+		onSuccess: () => {
 			redirect("/profile");
 		},
 		onError: (result) => {
@@ -21,27 +34,16 @@ export default function RegisterForm() {
 		},
 	});
 
+	const onSubmit = (event: FormEvent) => {
+		event.preventDefault();
+		register({
+			name: email,
+			displayName: username,
+		});
+	};
+
 	return (
 		<form className="space-y-6" onSubmit={onSubmit}>
-			<div>
-				<label
-					htmlFor="username"
-					className="block text-sm font-medium leading-6 text-gray-900"
-				>
-					Username
-				</label>
-				<div className="mt-2">
-					<input
-						id="username"
-						name="username"
-						type="text"
-						autoComplete="username"
-						required
-						className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-					/>
-				</div>
-			</div>
-
 			<div>
 				<label
 					htmlFor="email"
@@ -55,6 +57,29 @@ export default function RegisterForm() {
 						name="email"
 						type="email"
 						autoComplete="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						required
+						className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+					/>
+				</div>
+			</div>
+
+			<div>
+				<label
+					htmlFor="username"
+					className="block text-sm font-medium leading-6 text-gray-900"
+				>
+					Username
+				</label>
+				<div className="mt-2">
+					<input
+						id="username"
+						name="username"
+						type="text"
+						autoComplete="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
 						required
 						className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 					/>
@@ -64,7 +89,7 @@ export default function RegisterForm() {
 			<div>
 				<button
 					type="submit"
-					disabled={!isAvailable || isPending}
+					disabled={!isAvailable}
 					className="inline-flex w-full items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 				>
 					<svg

@@ -13,7 +13,7 @@
 		"@0x57/eslint-config": "*",
 		"@0x57/prettier-config": "*",
 		"@0x57/typescript-config": "*",
-		"@0x57/types": "*",
+		"@0x57/schemas": "*",
 		"@turbo/gen": "^1.12.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-packagejson": "^2.4.10",

@@ -1,5 +1,5 @@
 {
-	"name": "@0x57/passkey",
+	"name": "@0x57/schemas",
 	"version": "0.0.0",
 	"type": "module",
 	"exports": {
@@ -14,8 +14,6 @@
 		"prepublish": "npm run clean && npm run build"
 	},
 	"dependencies": {
-		"@0x57/client": "*",
-		"@github/webauthn-json": "^2.1.1",
 		"valibot": "^0.29.0"
 	}
 }

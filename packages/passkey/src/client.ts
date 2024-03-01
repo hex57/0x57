@@ -1,7 +1,13 @@
 /* eslint-env node */
 import { Hex57, RequestMethod } from "@0x57/client";
 import type { Prettify } from "@0x57/interfaces";
-import type { Account, CreateAccountResponse } from "@0x57/types";
+import {
+	AccountSchema,
+	CreateAccountResponseSchema,
+	type Account,
+	type CreateAccountResponse,
+} from "@0x57/schemas";
+import { parse } from "valibot";
 
 interface ClientOptions {
 	rpid: string;
@@ -39,7 +45,8 @@ export class PasskeyClient extends Hex57 {
 		});
 
 		const json = (await response.json()) as unknown;
-		return json as CreateAccountResponse;
+		const data = parse(CreateAccountResponseSchema, json);
+		return data;
 	}
 
 	async login(parameters: {
@@ -52,14 +59,16 @@ export class PasskeyClient extends Hex57 {
 		});
 
 		const json = (await response.json()) as unknown;
-		return json.account as Account;
+		const data = parse(AccountSchema, json);
+		return data;
 	}
 
 	async getAccount(id: string): Promise<Account> {
 		const response = await this.request(RequestMethod.GET, `/accounts/${id}`);
 
 		const json = (await response.json()) as unknown;
-		return json.account as Account;
+		const data = parse(AccountSchema, json);
+		return data;
 	}
 
 	async editAccount(
@@ -76,6 +85,7 @@ export class PasskeyClient extends Hex57 {
 		);
 
 		const json = (await response.json()) as unknown;
-		return json.account as Account;
+		const data = parse(AccountSchema, json);
+		return data;
 	}
 }
