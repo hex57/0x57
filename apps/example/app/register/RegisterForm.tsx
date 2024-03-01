@@ -22,8 +22,8 @@ export default function RegisterForm({
 	const register = useRegister({
 		challenge: challenge ?? "",
 		relyingParty: {
-			id: "localhost:3001",
-			name: "localhost:3001",
+			id: "localhost",
+			name: "0x57 Example App",
 		},
 		action: registerAction,
 		onSuccess: () => {
