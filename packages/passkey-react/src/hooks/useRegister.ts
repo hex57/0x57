@@ -23,12 +23,12 @@ export function useRegister<ActionResult>({
 	onSuccess,
 	onError,
 }: Prettify<RegisterProps<ActionResult>>) {
-	const register = async (user: { name: string; displayName: string }) => {
+	const register = async (user: { username: string; email: string }) => {
 		try {
 			const credential = await createCredential(
 				{
-					name: user.name,
-					displayName: user.displayName,
+					name: user.email,
+					displayName: user.username,
 				},
 				relyingParty,
 				challenge,
@@ -39,6 +39,8 @@ export function useRegister<ActionResult>({
 
 			const data = new FormData();
 			data.set("credential", JSON.stringify(credential));
+			data.set("email", user.email);
+			data.set("username", user.username);
 
 			const result = await action(data);
 

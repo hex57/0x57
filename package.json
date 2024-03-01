@@ -12,13 +12,13 @@
 	"devDependencies": {
 		"@0x57/eslint-config": "*",
 		"@0x57/prettier-config": "*",
-		"@0x57/typescript-config": "*",
 		"@0x57/schemas": "*",
+		"@0x57/typescript-config": "*",
 		"@turbo/gen": "^1.12.3",
 		"prettier": "^3.2.5",
 		"prettier-plugin-packagejson": "^2.4.10",
 		"prettier-plugin-tailwindcss": "^0.5.11",
-		"tsup": "^8.0.1",
+		"tsup": "^8.0.2",
 		"turbo": "^1.12.4",
 		"vitest": "^1.2.2"
 	},

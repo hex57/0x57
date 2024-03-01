@@ -6,7 +6,7 @@
 		".": "./dist/index.js"
 	},
 	"scripts": {
-		"build": "tsc",
+		"build": "tsup",
 		"clean": "rimraf dist .turbo",
 		"prettier": "prettier src/**/*.ts --check",
 		"typecheck": "tsc --noEmit",

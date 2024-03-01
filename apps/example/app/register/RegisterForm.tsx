@@ -22,8 +22,8 @@ export default function RegisterForm({
 	const register = useRegister({
 		challenge: challenge ?? "",
 		relyingParty: {
-			id: "localhost",
-			name: "localhost",
+			id: "localhost:3001",
+			name: "localhost:3001",
 		},
 		action: registerAction,
 		onSuccess: () => {
@@ -37,8 +37,8 @@ export default function RegisterForm({
 	const onSubmit = (event: FormEvent) => {
 		event.preventDefault();
 		register({
-			name: email,
-			displayName: username,
+			email,
+			username,
 		});
 	};
 

@@ -6,14 +6,6 @@ import {
 	parseRequestOptionsFromJSON,
 } from "@github/webauthn-json/browser-ponyfill";
 
-function getChallengeValue(challenge: string | Uint8Array): Uint8Array {
-	if (typeof challenge === "string") {
-		return Uint8Array.from(challenge, (character) => character.charCodeAt(0));
-	}
-
-	return challenge;
-}
-
 interface CredentialOptions {
 	attestation?: "direct" | "indirect" | "none";
 	timeout?: number;
@@ -28,7 +20,7 @@ interface CredentialOptions {
 export async function createCredential(
 	user: { name: string; displayName: string },
 	relyingParty: { name: string; id: string },
-	challenge: string | Uint8Array,
+	challenge: string,
 	options?: Prettify<CredentialOptions>
 ) {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
@@ -46,7 +38,7 @@ export async function createCredential(
 			rp: relyingParty,
 			attestation: options?.attestation ?? "direct",
 			timeout: options?.timeout ?? 6000,
-			challenge: getChallengeValue(challenge),
+			challenge,
 		},
 	});
 
@@ -61,7 +53,7 @@ export async function createCredential(
  * @returns The WebAuthn Credential
  */
 export async function getCredential(
-	challenge: string | Uint8Array,
+	challenge: string,
 	relyingPartyId: string,
 	options?: Prettify<CredentialOptions>
 ) {
@@ -69,7 +61,7 @@ export async function getCredential(
 	const json = parseRequestOptionsFromJSON({
 		publicKey: {
 			rpId: relyingPartyId,
-			challenge: getChallengeValue(challenge),
+			challenge,
 			timeout: options?.timeout ?? 6000,
 		},
 	});

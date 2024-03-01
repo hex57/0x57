@@ -37,7 +37,7 @@ export class PasskeyClient extends Hex57 {
 		username?: string;
 		email?: string;
 	}): Promise<CreateAccountResponse> {
-		const response = await this.request(RequestMethod.POST, `/sessions`, {
+		const response = await this.request(RequestMethod.POST, `/accounts`, {
 			challenge: parameters.challenge,
 			credential: parameters.credential,
 			username: parameters.username,
@@ -60,6 +60,7 @@ export class PasskeyClient extends Hex57 {
 
 		const json = (await response.json()) as unknown;
 		const data = parse(AccountSchema, json);
+
 		return data;
 	}
 
@@ -68,6 +69,7 @@ export class PasskeyClient extends Hex57 {
 
 		const json = (await response.json()) as unknown;
 		const data = parse(AccountSchema, json);
+
 		return data;
 	}
 
@@ -86,6 +88,7 @@ export class PasskeyClient extends Hex57 {
 
 		const json = (await response.json()) as unknown;
 		const data = parse(AccountSchema, json);
+
 		return data;
 	}
 }
