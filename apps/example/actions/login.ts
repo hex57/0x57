@@ -23,9 +23,9 @@ export default async function login(formData: FormData) {
 			credential: JSON.parse(formData.get("credential")?.toString() ?? ""),
 		});
 
-		session.userId = result.user.id;
+		session.userId = result.id;
 		await session.save();
-		redirect("/dashboard");
+		redirect("/profile");
 	} catch (err) {
 		if (isRedirectError(err)) {
 			throw err;

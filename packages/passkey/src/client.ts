@@ -4,6 +4,7 @@ import type { Prettify } from "@0x57/interfaces";
 import {
 	AccountSchema,
 	CreateAccountResponseSchema,
+	CreateAccountSessionResponseSchema,
 	type Account,
 	type CreateAccountResponse,
 } from "@0x57/schemas";
@@ -59,9 +60,9 @@ export class PasskeyClient extends Hex57 {
 		});
 
 		const json = (await response.json()) as unknown;
-		const data = parse(AccountSchema, json);
+		const data = parse(CreateAccountSessionResponseSchema, json);
 
-		return data;
+		return data.account;
 	}
 
 	async getAccount(id: string): Promise<Account> {
