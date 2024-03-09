@@ -18,3 +18,10 @@ test("custom alphabet", () => {
   const id = nanoid();
   expect(id).toMatch(/^[abc]{12}$/);
 });
+
+test("ensure randomness", () => {
+  const nanoid = NanoID.custom(12);
+  const id1 = nanoid();
+  const id2 = nanoid();
+  expect(id1).not.toBe(id2);
+});
